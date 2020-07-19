@@ -1,16 +1,16 @@
 import React from 'react';
-import MainContextProvider from './Contexts/MainContext';
+import FilterContextProvider from './Contexts/FilterContext';
 
 import Main from './Componentes/Main';
 
 function App() {
 
     return (
-        <MainContextProvider>
+        <FilterContextProvider>
             <div>
                 <Main />
             </div>
-        </MainContextProvider>
+        </FilterContextProvider>
     );
 
 }

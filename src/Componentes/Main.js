@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 
-import { MainContext } from '../Contexts/MainContext';
-
+import SideMenu from './SideMenu';
 
 function Main() {
 
     return (
 
         <div>
+            <SideMenu />
         </div>
 
     );

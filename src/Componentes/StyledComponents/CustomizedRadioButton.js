@@ -71,9 +71,11 @@ const CustomizedRadioButton = (props) => {
             name="radio"
             value={props.value}
             checked={props.checked}
-            onChange={event => props.handleSelectChange(event)}
+            onChange={event => props.selectRadio(event.target.value)}
         />
         <RadioButtonLabel />
         <Title>{props.title}</Title>
     </Item>)
 }
+
+export default CustomizedRadioButton;

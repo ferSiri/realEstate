@@ -3,14 +3,12 @@ import React, { useContext } from 'react';
 import Search from './Search';
 import OperationType from './OperationType';
 
-import { FilterContext } from '../Contexts/FilterContext';
 import { CardsContext } from '../Contexts/CardsContext';
 
 
 function SideMenu() {
 
-    const { filters, setFilters, openFilter } = useContext(FilterContext);
-    const { cards, applyFilter, setFav } = useContext(CardsContext);
+    const { cards, applyFilter, setFav, filters, setFilters, openFilter, selectRadio } = useContext(CardsContext);
 
     return (
 
@@ -48,8 +46,7 @@ function SideMenu() {
                 changeFilterValue={setFilters}
                 isOpen={filters.operation_type_id.isOpen}
                 filterValue={filters.operation_type_id.value}
-                selectFilter={setFilters}
-                search={applyFilter}
+                selectRadio={selectRadio}
                 filtro={"operation_type_id"}
             />
         </div>

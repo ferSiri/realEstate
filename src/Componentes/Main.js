@@ -33,7 +33,7 @@ function Main() {
             </div>
         })
     } else {
-        pubs = cards && cards.map(c => {
+        /* pubs = cards && cards.map(c => {
 
             return <div key={c.posting_id}>
                 <div>{c.posting_location.address}</div>
@@ -41,7 +41,7 @@ function Main() {
                 <div>{c.favorito ? "es favorito" : "no es favorito"}</div>
                 <div onClick={() => setFav(c.posting_id)}>fav</div>
             </div>
-        })
+        }) */
     }
 
     return (

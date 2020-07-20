@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { FilterContext } from '../Contexts/FilterContext';
 import MenuTitle from './MenuTitle';
 import CustomizedRadioButton from './StyledComponents/CustomizedRadioButton';
 
@@ -16,6 +15,26 @@ function Search(props) {
                 <CustomizedRadioButton
                     checked={props.filterValue == 0}
                     value={0}
+                    selectRadio={props.selectRadio}
+                    title={"Todos"}
+                />
+                <CustomizedRadioButton
+                    checked={props.filterValue == 1}
+                    value={1}
+                    selectRadio={props.selectRadio}
+                    title={"Alquiler"}
+                />
+                <CustomizedRadioButton
+                    checked={props.filterValue == 2}
+                    value={2}
+                    selectRadio={props.selectRadio}
+                    title={"Venta"}
+                />
+                <CustomizedRadioButton
+                    checked={props.filterValue == 3}
+                    value={3}
+                    selectRadio={props.selectRadio}
+                    title={"Temporal"}
                 />
 
             </div>}

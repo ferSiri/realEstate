@@ -18,7 +18,7 @@ const CustomizedRadioButton = (props) => {
     height: 12px;
     border-radius: 50%;
     background: white;
-    border: 1px solid orange;
+    border: 1px solid #FCA267;
     cursor:pointer;
     `;
 
@@ -39,14 +39,14 @@ const CustomizedRadioButton = (props) => {
         width: 8px;
         height: 8px;
         margin: 2px;
-        background: orange;
+        background: #FCA267;
         }
     }
     ${props =>
             props.checked &&
             ` 
         &:checked + ${RadioButtonLabel} {
-        border: 1px solid #db7290;
+        border: 1px solid #FCA267;
         &::after {
             content: "";
         display: block;
@@ -54,7 +54,7 @@ const CustomizedRadioButton = (props) => {
         width: 8px;
         height: 8px;
         margin: 2px;
-        background: orange;
+        background: #FCA267;
         }
         }
     `}

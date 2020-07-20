@@ -36,7 +36,7 @@ const CardsContextProvider = (props) => {
             ...filters,
             [filter]: {
                 ...filters[filter],
-                value
+                value: value.toLowerCase()
             }
         })
     };
@@ -56,17 +56,18 @@ const CardsContextProvider = (props) => {
     const applyFilter = () => {
         //si existen filtros se aplican
         setFilteredCards(cards.filter(c =>
-            c.posting_location.address.includes(filters.address.value) &&
-            c.posting_location.zone.includes(filters.zone.value) &&
-            c.posting_location.city.includes(filters.city.value) &&
+            c.posting_location.address.toLowerCase().includes(filters.address.value) &&
+            c.posting_location.zone.toLowerCase().includes(filters.zone.value) &&
+            c.posting_location.city.toLowerCase().includes(filters.city.value) &&
             (filters.operation_type_id.value == 0 || c.operation_type.operation_type_id == filters.operation_type_id.value)
         ))
     };
 
     //HOOK PARA OBTENER LAS PUBLICACIONES
     const getPublicaciones = (publicaciones) => {
-        setCards(publicaciones);
-        setFilteredCards(publicaciones);
+        let arrAux = [...publicaciones.filter(p => p.publication_plan == "SUPERHIGHLIGHTED"), ...publicaciones.filter(p => p.publication_plan == "HIGHLIGHTED"), ...publicaciones.filter(p => p.publication_plan == "SIMPLE")]
+        setCards(arrAux);
+        setFilteredCards(arrAux);
     }
 
     //HOOK PARA MARCAR PUBLICACIÓN COMO FAVORITA
@@ -92,9 +93,9 @@ const CardsContextProvider = (props) => {
         })
 
         setFilteredCards(cards.filter(c =>
-            c.posting_location.address.includes(filters.address.value) &&
-            c.posting_location.zone.includes(filters.zone.value) &&
-            c.posting_location.city.includes(filters.city.value) &&
+            c.posting_location.address.toLowerCase().includes(filters.address.value) &&
+            c.posting_location.zone.toLowerCase().includes(filters.zone.value) &&
+            c.posting_location.city.toLowerCase().includes(filters.city.value) &&
             (radioId == 0 || c.operation_type.operation_type_id == radioId)
         ))
     }

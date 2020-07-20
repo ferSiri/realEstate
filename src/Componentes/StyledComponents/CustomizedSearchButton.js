@@ -22,7 +22,7 @@ const CustomizedSearchButton = (props) => {
     color: rgb(43,156,218);
     `;
 
-    return (<Container disabled={props.disabled} onClick={() => props.disabled ? null : props.onclick()}>
+    return (<Container disabled={props.disabled} onClick={() => props.disabled ? null : props.onclick(props.target)}>
         <Glass className="fas fa-search"></Glass>
     </Container>)
 

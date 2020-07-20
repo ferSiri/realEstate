@@ -30,6 +30,8 @@ const CardsContextProvider = (props) => {
         }
     });
 
+    const [usedFilters, setUsedFilters] = useState([]);
+
     //HOOK PARA SETEAR EL VALOR DE LOS FILTROS
     const setFilters = (filter, value) => {
         setFilter({
@@ -53,7 +55,7 @@ const CardsContextProvider = (props) => {
     };
 
     //HOOK PARA APLICAR FILTROS
-    const applyFilter = () => {
+    const applyFilter = (filter) => {
         //si existen filtros se aplican
         setFilteredCards(cards.filter(c =>
             c.posting_location.address.toLowerCase().includes(filters.address.value) &&
@@ -61,6 +63,10 @@ const CardsContextProvider = (props) => {
             c.posting_location.city.toLowerCase().includes(filters.city.value) &&
             (filters.operation_type_id.value == 0 || c.operation_type.operation_type_id == filters.operation_type_id.value)
         ))
+        //se agrega el filtro aplicado al store de filtros utilizados
+
+        setUsedFilters([...usedFilters, filter])
+
     };
 
     //HOOK PARA OBTENER LAS PUBLICACIONES
@@ -100,8 +106,27 @@ const CardsContextProvider = (props) => {
         ))
     }
 
+    const setAppliedFilters = (filter) => {
+        //se elimina el filtro y se vuelve a filtrar con los filtros activos
+
+        setUsedFilters(usedFilters.filter(f => f != filter))
+
+        let objAux = { ...filters }
+        objAux[filter].value = ""
+
+        setFilter(objAux)
+
+        setFilteredCards(cards.filter(c =>
+            c.posting_location.address.toLowerCase().includes(filters.address.value) &&
+            c.posting_location.zone.toLowerCase().includes(filters.zone.value) &&
+            c.posting_location.city.toLowerCase().includes(filters.city.value) &&
+            (filters.operation_type_id.value == 0 || c.operation_type.operation_type_id == filters.operation_type_id.value)
+        ))
+
+    };
+
     return (
-        <CardsContext.Provider value={{ cards, applyFilter, getPublicaciones, filteredCards, setFav, filters, setFilters, openFilter, selectRadio }}>
+        <CardsContext.Provider value={{ cards, applyFilter, getPublicaciones, filteredCards, setFav, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters }}>
             {props.children}
         </CardsContext.Provider>
     );

@@ -2,18 +2,22 @@ import React, { useContext } from 'react';
 
 import Search from './Search';
 import OperationType from './OperationType';
+import CustomizedTab from '../StyledComponents/CustomizedTab';
 
 import { CardsContext } from '../../Contexts/CardsContext';
 
 
 function SideMenu() {
 
-    const { cards, applyFilter, setFav, filters, setFilters, openFilter, selectRadio } = useContext(CardsContext);
-
+    const { cards, applyFilter, setFav, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters } = useContext(CardsContext);
+    console.log(filters)
     return (
 
         <div className="menu-lateral">
-            <div className="side-menu-title" >Filtrado actual</div>
+            <div className="side-menu-title" >
+                <div>Filtrado actual</div>
+                {usedFilters && usedFilters.map(f => <CustomizedTab onclick={setAppliedFilters} target={f} content={f} />)}
+            </div>
             <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}

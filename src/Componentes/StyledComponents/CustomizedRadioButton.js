@@ -6,7 +6,7 @@ const CustomizedRadioButton = (props) => {
     const Item = styled.div`
     display: flex;
     align-items: center;
-    height: 48px;
+    height: 30px;
     position: relative;
     `;
 
@@ -19,6 +19,7 @@ const CustomizedRadioButton = (props) => {
     border-radius: 50%;
     background: white;
     border: 1px solid orange;
+    cursor:pointer;
     `;
 
     const RadioButton = styled.input`
@@ -27,7 +28,8 @@ const CustomizedRadioButton = (props) => {
     border-radius: 50%;
     width: 15px;
     height: 15px;
-    margin-right: 10px;
+    margin-right: 6px;
+    cursor:pointer;
     &:hover ~ ${RadioButtonLabel} {
         
         &::after {
@@ -44,25 +46,22 @@ const CustomizedRadioButton = (props) => {
             props.checked &&
             ` 
         &:checked + ${RadioButtonLabel} {
-        background: #db7290;
         border: 1px solid #db7290;
         &::after {
             content: "";
-            display: block;
-            border-radius: 50%;
-            width: 12px;
-            height: 12px;
-            margin: 6px;
-            box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.1);
-            background: white;
+        display: block;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        margin: 2px;
+        background: orange;
         }
         }
     `}
     `;
 
     const Title = styled.div`
-        position: relative;
-        top: -4px;
+        font-size: 0.7em;
         `;
 
     return (<Item>

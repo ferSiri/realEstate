@@ -25,7 +25,7 @@ const CardsContextProvider = (props) => {
             isOpen: false
         },
         operation_type_id: {
-            value: null,
+            value: 0,
             isOpen: false
         }
     });
@@ -52,14 +52,14 @@ const CardsContextProvider = (props) => {
         })
     };
 
-    //HOOK PARA APLICAR EL FILTRO CORRESPONDIENTE
+    //HOOK PARA APLICAR FILTROS
     const applyFilter = () => {
         //si existen filtros se aplican
         setFilteredCards(cards.filter(c =>
             c.posting_location.address.includes(filters.address.value) &&
             c.posting_location.zone.includes(filters.zone.value) &&
             c.posting_location.city.includes(filters.city.value) &&
-            (!filters.operation_type_id.value || c.operation_type.operation_type_id == filters.operation_type_id.value)
+            (filters.operation_type_id.value == 0 || c.operation_type.operation_type_id == filters.operation_type_id.value)
         ))
     };
 
@@ -91,7 +91,12 @@ const CardsContextProvider = (props) => {
             }
         })
 
-        setFilteredCards(radioId > 0 ? cards.filter(c => c.operation_type.operation_type_id == radioId) : cards)
+        setFilteredCards(cards.filter(c =>
+            c.posting_location.address.includes(filters.address.value) &&
+            c.posting_location.zone.includes(filters.zone.value) &&
+            c.posting_location.city.includes(filters.city.value) &&
+            (radioId == 0 || c.operation_type.operation_type_id == radioId)
+        ))
     }
 
     return (

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Search from './Search';
 import OperationType from './OperationType';
 
-import { CardsContext } from '../Contexts/CardsContext';
+import { CardsContext } from '../../Contexts/CardsContext';
 
 
 function SideMenu() {
@@ -13,7 +13,7 @@ function SideMenu() {
     return (
 
         <div className="menu-lateral">
-            <div >Filtrado actual</div>
+            <div className="side-menu-title" >Filtrado actual</div>
             <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}

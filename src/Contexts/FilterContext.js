@@ -7,19 +7,19 @@ export const FilterContext = createContext();
 const FilterContextProvider = (props) => {
 
     const [filters, setFilter] = useState({
-        direccion: {
+        address: {
             value: "",
             isOpen: false
         },
-        barrio: {
+        zone: {
             value: "",
             isOpen: false
         },
-        ciudad: {
+        city: {
             value: "",
             isOpen: false
         },
-        tipoOperacion: {
+        operation_type_id: {
             value: null,
             isOpen: false
         }

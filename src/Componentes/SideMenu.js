@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
 
 import Search from './Search';
+import OperationType from './OperationType';
 
 import { FilterContext } from '../Contexts/FilterContext';
+import { CardsContext } from '../Contexts/CardsContext';
 
 
 function SideMenu() {
 
     const { filters, setFilters, openFilter } = useContext(FilterContext);
+    const { cards, applyFilter, setFav } = useContext(CardsContext);
 
-    console.log("works")
     return (
 
         <div className="menu-lateral">
@@ -17,26 +19,38 @@ function SideMenu() {
             <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
-                isOpen={filters.direccion.isOpen}
-                filterValue={filters.direccion.value}
+                isOpen={filters.address.isOpen}
+                filterValue={filters.address.value}
+                search={applyFilter}
                 nombre={"Dirección"}
-                filtro={"direccion"}
+                filtro={"address"}
             />
             <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
-                isOpen={filters.barrio.isOpen}
-                filterValue={filters.barrio.value}
+                isOpen={filters.zone.isOpen}
+                filterValue={filters.zone.value}
+                search={applyFilter}
                 nombre={"Barrio"}
-                filtro={"barrio"}
+                filtro={"zone"}
             />
             <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
-                isOpen={filters.ciudad.isOpen}
-                filterValue={filters.ciudad.value}
+                isOpen={filters.city.isOpen}
+                filterValue={filters.city.value}
+                search={applyFilter}
                 nombre={"Ciudad"}
-                filtro={"ciudad"}
+                filtro={"city"}
+            />
+            <OperationType
+                openFilter={openFilter}
+                changeFilterValue={setFilters}
+                isOpen={filters.operation_type_id.isOpen}
+                filterValue={filters.operation_type_id.value}
+                selectFilter={setFilters}
+                search={applyFilter}
+                filtro={"operation_type_id"}
             />
         </div>
 

@@ -12,7 +12,7 @@ function Search(props) {
 
             {props.isOpen && <div>
                 <input value={props.filterValue} onChange={(e) => props.changeFilterValue(props.filtro, e.target.value)} type="text"></input>
-                <span onClick={() => props.search()} className="fas fa-search"></span>
+                <span onClick={() => props.search(props.filtro, props.filterValue)} className="fas fa-search"></span>
             </div>}
 
         </div>

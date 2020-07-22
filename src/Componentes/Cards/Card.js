@@ -7,8 +7,11 @@ import useModal from '../../Hooks/UseModal';
 
 
 function Card(props) {
+
     const { card, setFav, selectCurrentCardPic, currentCardPics, setContact } = props;
+
     const { isShowing, toggle } = useModal();
+
     let antiguedadPublicacion = Helper.CalcularDiferenciaDias(card.publish_date);
 
     let tipoPublicacion = "";
@@ -38,7 +41,6 @@ function Card(props) {
 
     let imgName = currentCardPics["c" + card.posting_id];
 
-
     return (<div className={'card' + topBorderClass}>
         <ModalContacto
             targetId={card.posting_id}
@@ -55,7 +57,9 @@ function Card(props) {
                 isFav={card.favorito}
                 imagen={imgName} />
             <div className="pic-footer">
-                <div className='price'>{Helper.ConvertirMonto(card.posting_prices[0].price.amount, card.posting_prices[0].price.currency)}</div>
+                <div className='price'>
+                    {Helper.ConvertirMonto(card.posting_prices[0].price.amount, card.posting_prices[0].price.currency)}
+                </div>
                 {card.posting_prices[0].expenses && <div className="expensas">{"+ " + Helper.ConvertirMonto(card.posting_prices[0].expenses.amount, card.posting_prices[0].expenses.currency)}</div>}
             </div>
         </div>
@@ -68,8 +72,6 @@ function Card(props) {
                 <CustomizedButton disabled={card.contactado} content={!card.contactado ? "Contactar" : "Contactado"} onclick={() => !card.contactado ? toggle() : null} />
             </div>
         </div>
-
-
     </div>)
 }
 

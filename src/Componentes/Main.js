@@ -4,7 +4,6 @@ import { CardsContext } from '../Contexts/CardsContext';
 
 import { totalPublicaciones } from '../MockPublicaciones';
 
-
 import SideMenu from './SideMenu/SideMenu';
 import CardContainer from './Cards/CardContainer';
 

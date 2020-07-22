@@ -11,6 +11,10 @@ const CardsContextProvider = (props) => {
 
     const [filteredCards, setFilteredCards] = useState([]);
 
+    const [usedFilters, setUsedFilters] = useState([]);
+
+    const [currentCardPics, setCurrentCardPic] = useState({});
+
     const [filters, setFilter] = useState({
         address: {
             value: "",
@@ -30,9 +34,6 @@ const CardsContextProvider = (props) => {
         }
     });
 
-    const [usedFilters, setUsedFilters] = useState([]);
-
-    const [currentCardPics, setCurrentCardPic] = useState({});
 
     //FUNCIÓN PARA LA SELECCIÓN DE LA FOTO 
     const selectCurrentCardPic = (card, picNumber) => {

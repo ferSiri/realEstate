@@ -23,7 +23,6 @@ const Modal = ({ isShowing, toggle, setContact, targetId }) => {
                         <div className="container-form-modal">
                             <div className="modal-title">Contacto</div>
                             <form className="form-modal" onSubmit={handleSubmit(onSubmit)}>
-
                                 <input
                                     placeholder="Ingrese su nombre"
                                     name='nombre'

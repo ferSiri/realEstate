@@ -15,6 +15,7 @@ function CardContainer(props) {
             currentCardPics={currentCardPics}
             setFav={setFav}
             card={p}
+            key={p.posting_id}
         />)}
     </div>)
 }

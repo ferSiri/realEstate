@@ -11,7 +11,14 @@ import { CardsContext } from '../../Contexts/CardsContext';
 
 function SideMenu() {
 
-    const { cards, applyFilter, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters } = useContext(CardsContext);
+    const { applyFilter,
+        filters,
+        setFilters,
+        openFilter,
+        selectRadio,
+        usedFilters,
+        setAppliedFilters
+    } = useContext(CardsContext);
 
     return (
 
@@ -19,7 +26,11 @@ function SideMenu() {
             <div className="side-menu-title" >
                 <div>Filtrado actual</div>
                 <div className="tag-container">
-                    {usedFilters && usedFilters.map(f => <CustomizedTab onclick={setAppliedFilters} target={f} content={Helper.GetNameByFilter(f)/*ejemplo helper*/} />)}
+                    {usedFilters && usedFilters.map(f => <CustomizedTab
+                        onclick={setAppliedFilters}
+                        target={f}
+                        content={Helper.GetNameByFilter(f)}
+                    />)}
                 </div>
             </div>
 

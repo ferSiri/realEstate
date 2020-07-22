@@ -1,0 +1,25 @@
+import React, { useContext, useEffect } from 'react';
+import Card from './Card';
+import { CardsContext } from '../../Contexts/CardsContext';
+
+
+function CardContainer(props) {
+
+    const { publicaciones } = props;
+    const { setFav, selectCurrentCardPic, currentCardPics, setContact, mailHasBeenSent, sentMails } = useContext(CardsContext);
+
+    return (<div className='card-container'>
+        {publicaciones.map(p => <Card
+            mailHasBeenSent={mailHasBeenSent}
+            sentMails={sentMails}
+            setContact={setContact}
+            selectCurrentCardPic={selectCurrentCardPic}
+            currentCardPics={currentCardPics}
+            setFav={setFav}
+            card={p}
+            key={p.posting_id}
+        />)}
+    </div>)
+}
+
+export default CardContainer;

@@ -11,7 +11,7 @@ function Search(props) {
 
             <MenuTitle filtro={props.filtro} titulo={"Tipo de Operación"} isOpen={props.isOpen} openFilter={props.openFilter} />
 
-            {props.isOpen && <div>
+            {props.isOpen && <div className="radioContainerDiv">
                 <CustomizedRadioButton
                     checked={props.filterValue == 2}
                     value={2}

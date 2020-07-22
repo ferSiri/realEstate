@@ -32,7 +32,18 @@ const CardsContextProvider = (props) => {
 
     const [usedFilters, setUsedFilters] = useState([]);
 
-    //HOOK PARA SETEAR EL VALOR DE LOS FILTROS
+    const [currentCardPics, setCurrentCardPic] = useState({});
+
+    //FUNCIÓN PARA LA SELECCIÓN DE LA FOTO 
+    const selectCurrentCardPic = (card, picNumber) => {
+        let objAux = { ...currentCardPics };
+        objAux["c" + card] = picNumber;
+        setCurrentCardPic(objAux)
+    }
+
+
+
+    //FUNCIÓN PARA SETEAR EL VALOR DE LOS FILTROS
     const setFilters = (filter, value) => {
         setFilter({
             ...filters,
@@ -43,7 +54,7 @@ const CardsContextProvider = (props) => {
         })
     };
 
-    //HOOK PARA DESPLEGAR O COLAPSAR LA SECCIÓN DE FILTRO CORRESPONDIENTE
+    //FUNCIÓN PARA DESPLEGAR O COLAPSAR LA SECCIÓN DE FILTRO CORRESPONDIENTE
     const openFilter = (filter) => {
         setFilter({
             ...filters,
@@ -54,7 +65,7 @@ const CardsContextProvider = (props) => {
         })
     };
 
-    //HOOK PARA APLICAR FILTROS
+    //FUNCIÓN PARA APLICAR FILTROS
     const applyFilter = (filter) => {
         //si existen filtros se aplican
         setFilteredCards(cards.filter(c =>
@@ -65,18 +76,24 @@ const CardsContextProvider = (props) => {
         ))
         //se agrega el filtro aplicado al store de filtros utilizados
 
-        setUsedFilters([...usedFilters, filter])
+        setUsedFilters(!usedFilters.some(f => f == filter) ? [...usedFilters, filter] : usedFilters)
 
     };
 
-    //HOOK PARA OBTENER LAS PUBLICACIONES
+    //FUNCIÓN PARA OBTENER LAS PUBLICACIONES
     const getPublicaciones = (publicaciones) => {
         let arrAux = [...publicaciones.filter(p => p.publication_plan == "SUPERHIGHLIGHTED"), ...publicaciones.filter(p => p.publication_plan == "HIGHLIGHTED"), ...publicaciones.filter(p => p.publication_plan == "SIMPLE")]
         setCards(arrAux);
         setFilteredCards(arrAux);
+        let objAux = { ...currentCardPics };
+        arrAux.map(c => {
+            objAux["c" + c.posting_id] = c.posting_id + "-1";
+        })
+
+        setCurrentCardPic(objAux)
     }
 
-    //HOOK PARA MARCAR PUBLICACIÓN COMO FAVORITA
+    //FUNCIÓN PARA MARCAR PUBLICACIÓN COMO FAVORITA
     const setFav = (postingId) => {
         setCards(cards.map(c => {
             if (c.posting_id == postingId) {
@@ -84,10 +101,23 @@ const CardsContextProvider = (props) => {
             }
             return c
         }))
+
         localStorage.setItem("publicaciones", JSON.stringify(cards));
     }
 
-    //HOOK PARA SELECCIONAR UN TIPO DE OPERACIÓN Y APLICAR EL FILTRO
+    //FUNCIÓN PARA MARCAR PUBLICACIÓN COMO FAVORITA
+    const setContact = (postingId) => {
+        setCards(cards.map(c => {
+            if (c.posting_id == postingId) {
+                c.contactado = true;
+            }
+            return c
+        }))
+
+        localStorage.setItem("publicaciones", JSON.stringify(cards));
+    }
+
+    //FUNCIÓN PARA SELECCIONAR UN TIPO DE OPERACIÓN Y APLICAR EL FILTRO
     const selectRadio = (radioId) => {
 
         setFilter({
@@ -126,7 +156,7 @@ const CardsContextProvider = (props) => {
     };
 
     return (
-        <CardsContext.Provider value={{ cards, applyFilter, getPublicaciones, filteredCards, setFav, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters }}>
+        <CardsContext.Provider value={{ cards, applyFilter, getPublicaciones, filteredCards, setFav, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters, selectCurrentCardPic, currentCardPics, setContact }}>
             {props.children}
         </CardsContext.Provider>
     );

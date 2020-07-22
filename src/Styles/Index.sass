@@ -14,6 +14,10 @@ $gris-regular : rgb(121,121,121)
 $gris-oscuro: rgb(100,100,100)
 $gris-disabled : rgb(243,243,243)
 
+@media screen and (min-width: 500px)
+    body
+        font-size: 18px
+
 body
     background-color: $gris-fondo
 
@@ -22,13 +26,13 @@ body
     justify-content: space-between
     align-items: flex-start
     font-family: $roboto
-    padding: 0 10%
+    padding: 0 7%
 
 .menu-lateral
     display: flex
     flex-direction: column
     padding: 0 1em 0.5em 1em
-    width: 20%
+    width: 25%
     border: 1px solid rgb(210,210,210)
     border-radius: 1%
     box-shadow: -0.2px -0.2px 1px 1px rgb(210,210,210)
@@ -36,12 +40,20 @@ body
 
 .side-menu-title
     display: flex
+    flex-direction: column
     justify-content: space-between
-    align-items: center
-    min-height: 4em
     font-size: 0.9em
     font-weight: 500
+    padding: 10px 0
     border-bottom: 1px solid $gris-separador
+
+.tag-container
+    display: flex
+    flex-direction: column
+    align-items: start
+
+    div
+        margin: 0.2em 0
 
 .menu-title
     display: flex
@@ -71,7 +83,7 @@ body
     margin-bottom: 1.2em
 
     input
-        width: 72%
+        width: 76%
 
 .input-form
     border-radius: 4%
@@ -90,8 +102,12 @@ body
     align-items: start
     width: 100%
 
+.radioContainerDiv
+    position: relative
+    top: -10px
+
 .card-container
-    width: 76%
+    width: 71%
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -99,7 +115,8 @@ body
 
 .card
     display: flex
-    padding: 0.5em 0.5em 0.5em 0
+    padding: 0 0.5em 0.5em 0
+    min-height: 12em
     width: 100%
     border: 1px solid $gris-input
     border-radius: 1%
@@ -116,6 +133,8 @@ body
 .card-right
     display: flex
     flex-direction: column
+    padding-left: 0.6em
+    justify-content: space-between
 
 .card-title
     color: $azul
@@ -131,6 +150,16 @@ body
     height: 7em
     font-size: 0.7em
     color: $gris-oscuro
+    padding-bottom: 2em
+    div
+        overflow: hidden
+        height: 4em
+        text-overflow: ellipsis
+        width: 100%
+        display: -webkit-box
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
+        line-height: 1.38
 
 .card-footer
     display: flex
@@ -142,12 +171,116 @@ body
     span
         margin-right: 0.2em
 
-.pic-container
+.card-left
     display: flex
     flex-direction: column
-    width: 25%
+    width: 80em
+    height: 9em
 
-.pic-container-xl
+.price
+    position: relative
+    top: 10px
+    left: 10px
+    font-size: 1.3em
+    font-weight: 500
+
+.expensas
+    position: relative
+    top: 15px
+    left: 10px
+
+.card-left-xl
     display: flex
     flex-direction: column
-    width: 35%
+    width: 70em
+    height: 10em
+
+.pic-footer
+    height: 30% !important
+    font-size: 0.8em
+
+.modal-overlay
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 1040
+    width: 100vw
+    height: 100vh
+    background-color: #000
+    opacity: .5
+
+.modal-wrapper
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 1050
+    width: 100%
+    height: 100%
+    overflow-x: hidden
+    overflow-y: auto
+    outline: 0
+
+.modal
+    z-index: 100
+    background: white
+    position: relative
+    margin: 1.75rem auto
+    border-radius: 3px
+    max-width: 500px
+    padding: 2rem
+
+    &-header
+        display: flex
+        justify-content: flex-end
+
+    .container-form-modal
+        display: flex
+        flex-direction: column
+        width: 100%
+
+    .modal-title
+        font-size: 1.5em
+        font-family: $roboto
+
+    .form-modal
+        display: flex
+        flex-direction: column
+        width: 100%
+        input
+            border-radius: 4%
+            border-width: 1px
+            border-style: solid
+            border-color: $gris-input
+            height: 2.5em
+            padding: 0 1em
+            font-size: 0.75em
+            box-shadow: 0px 0.5px 0 0 $gris-input
+            margin: 1em 0
+            text-align: -webkit-center
+            font-family: $roboto
+        div
+            display: flex
+            justify-content: space-around
+        p
+            margin: 0
+            font-size: 0.8em
+            color: red
+            font-family: Roboto
+            position: relative
+            top: -10px
+
+    .submit-button
+        border-radius: 4%
+        border-style: solid
+        border-color: $naranja
+        background-color: $naranja
+        height: 2em !important
+        padding: 5px 10px
+        color: white
+        font-size: 0.9em !important
+        font-weight: 500 !important
+        margin: 0 !important
+        cursor: pointer
+        &.secondary
+            background-color: $gris-input
+            border-color: $gris-input

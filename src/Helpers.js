@@ -19,8 +19,37 @@ let Helper = function () {
         return parseInt(((f2 - f1) / (1000 * 3600 * 24)))
     }
 
+    function _getNameByFilter(filter) {
+        switch (filter) {
+            case "address":
+                return "Dirección"
+            case "zone":
+                return "Barrio"
+            case "city":
+                return "Ciudad"
+            default:
+                return ""
+        }
+    }
+
+    function _convertirMonto(monto, moneda) {
+        let n = new Number(monto);
+        let objAux = {
+            style: "currency",
+            currency: moneda
+        }
+
+        let str = n.toLocaleString("es-AR", objAux);
+
+        str = str.replace("ARS", "$")
+
+        return str
+    }
+
     return {
-        CalcularDiferenciaDias: function (fecha1, fecha2) { return _calcularDiferenciaDias(fecha1, fecha2) }
+        CalcularDiferenciaDias: function (fecha1, fecha2) { return _calcularDiferenciaDias(fecha1, fecha2) },
+        GetNameByFilter: function (filter) { return _getNameByFilter(filter) },
+        ConvertirMonto: function (monto, moneda) { return _convertirMonto(monto, moneda) }
     }
 }
 

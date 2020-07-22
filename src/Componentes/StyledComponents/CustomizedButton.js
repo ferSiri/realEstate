@@ -7,7 +7,7 @@ const CustomizedButton = (props) => {
     border-radius: 4%;
     border-style: solid;
     border-color: #FCA267;
-    background-color: #FCA267;
+    ${props => { return props.disabled ? 'background-color: rgb(180,180,180); border-color: rgb(180,180,180);' : 'background-color: #FCA267; border-color: #FCA267;' }}
     height: 2em;
     padding: 5px 10px;
     color: white;
@@ -16,7 +16,7 @@ const CustomizedButton = (props) => {
     cursor: pointer;
     `;
 
-    return (<CustomButton onClick={() => props.onclick()}>
+    return (<CustomButton disabled={props.disabled} onClick={() => props.onclick()}>
         {props.content}
     </CustomButton>)
 }

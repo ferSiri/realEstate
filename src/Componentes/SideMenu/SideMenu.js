@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import Helper from '../../Helpers';
+
 import Search from './Search';
 import OperationType from './OperationType';
 import CustomizedTab from '../StyledComponents/CustomizedTab';
@@ -9,16 +11,19 @@ import { CardsContext } from '../../Contexts/CardsContext';
 
 function SideMenu() {
 
-    const { cards, applyFilter, setFav, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters } = useContext(CardsContext);
-    console.log(filters)
+    const { cards, applyFilter, filters, setFilters, openFilter, selectRadio, usedFilters, setAppliedFilters } = useContext(CardsContext);
+
     return (
 
         <div className="menu-lateral">
             <div className="side-menu-title" >
                 <div>Filtrado actual</div>
-                {usedFilters && usedFilters.map(f => <CustomizedTab onclick={setAppliedFilters} target={f} content={f} />)}
+                <div className="tag-container">
+                    {usedFilters && usedFilters.map(f => <CustomizedTab onclick={setAppliedFilters} target={f} content={Helper.GetNameByFilter(f)/*ejemplo helper*/} />)}
+                </div>
             </div>
-            <Search
+
+            {!usedFilters.some(u => u == "address") && <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
                 isOpen={filters.address.isOpen}
@@ -26,8 +31,8 @@ function SideMenu() {
                 search={applyFilter}
                 nombre={"Dirección"}
                 filtro={"address"}
-            />
-            <Search
+            />}
+            {!usedFilters.some(u => u == "zone") && <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
                 isOpen={filters.zone.isOpen}
@@ -35,8 +40,8 @@ function SideMenu() {
                 search={applyFilter}
                 nombre={"Barrio"}
                 filtro={"zone"}
-            />
-            <Search
+            />}
+            {!usedFilters.some(u => u == "city") && <Search
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
                 isOpen={filters.city.isOpen}
@@ -44,15 +49,15 @@ function SideMenu() {
                 search={applyFilter}
                 nombre={"Ciudad"}
                 filtro={"city"}
-            />
-            <OperationType
+            />}
+            {<OperationType
                 openFilter={openFilter}
                 changeFilterValue={setFilters}
                 isOpen={filters.operation_type_id.isOpen}
                 filterValue={filters.operation_type_id.value}
                 selectRadio={selectRadio}
                 filtro={"operation_type_id"}
-            />
+            />}
         </div>
 
     );

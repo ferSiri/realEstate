@@ -13,7 +13,7 @@ const CustomizedSearchButton = (props) => {
     ${props => { return props.disabled ? 'box-shadow-color: rgb(240,240,240) !important;' : 'rgb(228,228,228);' }}
     ${props => { return props.disabled ? 'cursor: auto;' : 'cursor: pointer;' }}
     border-radius: 4%;
-    height: 30px;
+    height: 1.83em;
     width: 30px;
     `;
 

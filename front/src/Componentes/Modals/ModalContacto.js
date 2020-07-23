@@ -87,7 +87,7 @@ const Modal = ({ isShowing, toggle, setContact, targetId, mailHasBeenSent }) => 
                                 {errors.telefono && errors.telefono.message && <p>{errors.telefono.message}</p>}
                                 <div>
                                     <input className='submit-button' value="Enviar" type='submit' />
-                                    <button className='submit-button' type="button" data-dismiss="modal" onClick={toggle}>
+                                    <button className='submit-button secondary' type="button" data-dismiss="modal" onClick={toggle}>
                                         Cancelar
                                     </button>
                                 </div>
